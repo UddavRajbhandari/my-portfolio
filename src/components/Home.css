@@ -1,0 +1,127 @@
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4rem;
+  padding-top: 130px;
+  overflow: hidden;
+}
+
+/* ── Orbs ── */
+.orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+.orb--1 { width: 420px; height: 420px; background: rgba(0,245,196,.06); top: 10%; right: 5%; }
+.orb--2 { width: 300px; height: 300px; background: rgba(0,170,255,.05); bottom: 10%; left: 10%; }
+
+/* ── Left ── */
+.home-left { flex: 1; max-width: 600px; position: relative; z-index: 1; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(0,245,196,.07);
+  border: 1px solid rgba(0,245,196,.2);
+  padding: .35rem .9rem;
+  font-size: .7rem; letter-spacing: .2em; color: var(--neon);
+  text-transform: uppercase; margin-bottom: 1.8rem;
+  animation: fadeUp .8s ease both;
+}
+
+.hero-name {
+  font-family: var(--ff-display);
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 800; color: #fff; line-height: 1;
+  margin-bottom: .3rem;
+  animation: fadeUp .8s .1s ease both;
+}
+
+.hero-role {
+  font-family: var(--ff-display);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: 600; color: var(--neon);
+  margin-bottom: 1.8rem;
+  animation: fadeUp .8s .2s ease both;
+}
+
+.hero-desc {
+  color: var(--muted); font-size: .85rem; line-height: 1.9;
+  max-width: 480px; margin-bottom: 2.5rem;
+  animation: fadeUp .8s .3s ease both;
+}
+
+.hero-btns {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp .8s .4s ease both;
+}
+
+/* ── Terminal ── */
+.terminal {
+  margin-top: 2.2rem;
+  background: rgba(0,0,0,.5);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--neon);
+  padding: 1rem 1.2rem;
+  font-size: .72rem; max-width: 400px;
+  animation: fadeUp .8s .5s ease both;
+}
+.terminal-line { color: var(--muted); line-height: 2.1; }
+.t-cmd { color: var(--neon2); }
+.t-val { color: var(--neon); }
+
+/* ── Right / photo ── */
+.home-right { flex-shrink: 0; position: relative; z-index: 1; animation: fadeUp .8s .2s ease both; }
+
+.photo-frame {
+  width: 300px; height: 360px; position: relative;
+}
+.photo-frame::before {
+  content: ''; position: absolute; inset: -2px;
+  background: linear-gradient(135deg, var(--neon), transparent 50%, var(--neon2));
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+.photo-frame::after {
+  content: ''; position: absolute;
+  top: 12px; left: 12px; right: -12px; bottom: -12px;
+  border: 1px solid rgba(0,245,196,.15);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  z-index: -1;
+}
+
+.photo-inner {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  background: var(--bg3);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.photo-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(20%) contrast(1.05); }
+
+.photo-placeholder {
+  display: flex; flex-direction: column; align-items: center;
+  gap: .75rem; color: var(--muted); font-size: .65rem;
+  letter-spacing: .08em; text-align: center; padding: 1.5rem;
+  line-height: 1.8;
+}
+.photo-placeholder__icon {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: rgba(0,245,196,.08);
+  border: 1px dashed rgba(0,245,196,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+}
+.photo-placeholder code { color: var(--neon); font-size: .62rem; }
+
+.photo-badge {
+  position: absolute; bottom: -16px; right: -16px;
+  background: var(--card); border: 1px solid var(--border);
+  padding: .6rem 1rem; font-size: .65rem; letter-spacing: .1em;
+  color: var(--neon); z-index: 2;
+}
+.photo-badge strong { display: block; font-size: 1.2rem; font-family: var(--ff-display); color: #fff; }
+
+@media (max-width: 768px) {
+  .home { flex-direction: column-reverse; padding-top: 100px; text-align: center; gap: 2.5rem; }
+  .hero-btns { justify-content: center; }
+  .photo-frame { width: 220px; height: 270px; }
+  .terminal { max-width: 100%; }
+}

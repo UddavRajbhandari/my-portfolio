@@ -1,0 +1,106 @@
+import { useEffect, useRef } from 'react'
+import './Projects.css'
+
+const PROJECTS = [
+  {
+    id: '01',
+    featured: true,
+    liveDemo: true,
+    title: 'Nepali Hate Content Classification',
+    desc: `Major Project. Developed a multilingual hate speech detection system for Nepali-language
+    social media content using NLP and deep learning. Trained and evaluated classification models
+    on curated Nepali datasets. Built a Streamlit-based inference app for real-time detection —
+    live and deployed.`,
+    tags: ['NLP', 'Deep Learning', 'Text Classification', 'Multilingual NLP', 'Streamlit', 'PyTorch'],
+    demoUrl:   'https://nepali-hate-content-detection.streamlit.app/',
+    githubUrl: 'https://github.com/UddavRajbhandari/major-project',
+  },
+  {
+    id: '02',
+    featured: false,
+    liveDemo: false,
+    title: 'Meeting Minute Generation System',
+    desc: `Audio-to-structured notes pipeline built during AI internship. Converts raw meeting audio
+    to structured minutes using Whisper ASR, speaker diarization, Gemini API segmentation, and
+    BART summarization. Modular pipeline: ASR → NLP → summarization → PDF generation.`,
+    tags: ['Whisper ASR', 'BART', 'Gemini API', 'NLP', 'Summarization', 'FastAPI', 'Python'],
+    githubUrl: 'https://github.com/UddavRajbhandari/Techmanthan-meeting-minutes-generation',
+  },
+  {
+    id: '03',
+    featured: false,
+    liveDemo: false,
+    title: 'AI-Powered Soft Skill Trainer',
+    desc: `Built during AI internship. A system evaluating Clarity, Grammar, Tone, and Persuasiveness
+    using NLP heuristics, pattern matching, and rule-based scoring. FastAPI endpoints for MCQ
+    generation, free-text scenario evaluation, and weighted combined-score computation.`,
+    tags: ['NLP', 'FastAPI', 'Sentiment Analysis', 'Rule-based AI', 'Python', 'Scoring'],
+    githubUrl: null, // no public repo
+  },
+  {
+    id: '04',
+    featured: false,
+    liveDemo: false,
+    title: 'Upper Body Posture Correction',
+    desc: `Minor Project. Real-time posture detection system using a TensorFlow CNN+LSTM hybrid model.
+    Provides live form-correction feedback via webcam. Built with OpenCV for video capture and
+    a deep learning pipeline for skeletal keypoint analysis.`,
+    tags: ['Computer Vision', 'CNN', 'LSTM', 'TensorFlow', 'OpenCV', 'Pose Estimation'],
+    githubUrl: 'https://github.com/UddavRajbhandari/Minor_project',
+  },
+]
+
+// ─── Single project card ──────────────────────────────────────────────────────
+function ProjectCard({ project }) {
+  return (
+    <div className={`project-card card-hover ${project.featured ? 'project-card--featured' : ''}`}>
+      <div className="project-number">PROJECT — {project.id}</div>
+
+      <h3 className="project-title">{project.title}</h3>
+      <p className="project-desc">{project.desc}</p>
+
+      <div className="project-tags">
+        {project.tags.map(t => <span key={t} className="tag">{t}</span>)}
+      </div>
+
+      <div className="project-links">
+        {project.liveDemo && (
+          <a href={project.demoUrl} target="_blank" rel="noreferrer" className="project-link project-link--demo">
+            ▶ Live Demo
+          </a>
+        )}
+        {project.githubUrl && (
+          <a href={project.githubUrl} target="_blank" rel="noreferrer" className="project-link">
+            ⌥ GitHub
+          </a>
+        )}
+      </div>
+    </div>
+  )
+}
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+export default function Projects() {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) ref.current?.classList.add('visible') },
+      { threshold: 0.05 }
+    )
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section id="work" className="section section--dark">
+      <div className="section-label">// 02. work</div>
+      <h2 className="section-title">My <span className="accent">Projects</span></h2>
+      <p className="projects-sub">End-to-end AI/ML projects spanning NLP, ASR, computer vision, and hate speech detection — one with a live demo.</p>
+
+      <div className="projects-grid fade-in" ref={ref}>
+        {PROJECTS.map(p => <ProjectCard key={p.id} project={p} />)}
+      </div>
+    </section>
+  )
+}

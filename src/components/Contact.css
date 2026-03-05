@@ -1,0 +1,53 @@
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; margin-top: 3rem;
+}
+
+/* ── Left ── */
+.contact-info p { font-size: .82rem; color: #9dc0db; line-height: 2; margin-bottom: 2rem; }
+
+.contact-links { display: flex; flex-direction: column; gap: .8rem; }
+.contact-link-item {
+  display: flex; align-items: center; gap: 1rem;
+  padding: .9rem 1.2rem;
+  background: var(--card); border: 1px solid var(--border);
+  transition: border-color .2s, color .2s;
+}
+.contact-link-item:hover { border-color: rgba(0,245,196,.3); }
+.contact-link-icon { font-size: 1.1rem; width: 28px; text-align: center; flex-shrink: 0; }
+.contact-link-label { font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; color: #7aaccc; display: block; margin-bottom: .15rem; }
+.contact-link-text  { font-size: .78rem; color: #ddeeff; }
+.contact-link-item:hover .contact-link-text { color: var(--neon); }
+
+/* ── Form ── */
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-group   { display: flex; flex-direction: column; gap: .4rem; }
+.form-group label { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--neon); }
+.form-group input,
+.form-group textarea {
+  background: var(--card); border: 1px solid var(--border);
+  color: var(--text); font-family: var(--ff-mono); font-size: .8rem;
+  padding: .75rem 1rem; outline: none; transition: border-color .2s;
+  width: 100%; resize: vertical;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: rgba(0,245,196,.4); }
+.form-group textarea { min-height: 120px; }
+
+.form-submit {
+  background: var(--neon); color: #000; border: none;
+  padding: .85rem 2rem; font-family: var(--ff-mono);
+  font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+  transition: opacity .2s; align-self: flex-start;
+}
+.form-submit:hover    { opacity: .85; }
+.form-submit:disabled { opacity: .6; cursor: wait; }
+
+.form-feedback { font-size: .72rem; margin-top: .3rem; }
+.form-feedback--ok  { color: var(--neon); }
+.form-feedback--err { color: #ff5252; }
+
+@media (max-width: 768px) {
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}

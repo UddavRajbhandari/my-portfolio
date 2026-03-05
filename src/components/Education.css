@@ -1,0 +1,23 @@
+.edu-timeline {
+  margin-top: 3rem; position: relative; padding-left: 2rem;
+}
+.edu-timeline::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, var(--neon), transparent);
+}
+
+.edu-item { position: relative; margin-bottom: 3rem; padding-left: 2rem; }
+.edu-item::before {
+  content: ''; position: absolute;
+  left: -2.45rem; top: .35rem;
+  width: 10px; height: 10px;
+  background: var(--neon); border-radius: 50%;
+  box-shadow: 0 0 12px var(--neon);
+}
+
+.edu-date   { font-size: .65rem; letter-spacing: .15em; color: var(--neon); text-transform: uppercase; margin-bottom: .4rem; }
+.edu-degree { font-family: var(--ff-display); font-weight: 700; font-size: 1.1rem; color: #fff; margin-bottom: .2rem; }
+.edu-school { font-size: .8rem; color: #8aaccb; margin-bottom: .8rem; }
+.edu-desc   { font-size: .75rem; color: #9dc0db; line-height: 1.8; }
+.edu-courses { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem; }

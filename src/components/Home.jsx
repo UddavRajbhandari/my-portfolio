@@ -50,10 +50,10 @@ export default function Home() {
                  block below.
               3. Uncomment the <img> tag.
 
-              <img src="/profile.jpg" alt="Uddav Rajbhandari" className="photo-img" />
               ════════════════════════════════════════════
-            */}
-            <div className="photo-placeholder">
+              */}
+              <img src="/profile.jpg" alt="Uddav Rajbhandari" className="photo-img" />
+            {/* <div className="photo-placeholder">
               <div className="photo-placeholder__icon">👤</div>
               <p>
                 Add your photo to<br />
@@ -61,13 +61,8 @@ export default function Home() {
                 then swap this block with<br />
                 <code>&lt;img src="/profile.jpg" /&gt;</code>
               </p>
-            </div>
+            </div> */}
           </div>
-        </div>
-
-        <div className="photo-badge">
-          <strong>2+</strong>
-          AI Projects Live
         </div>
       </div>
     </section>

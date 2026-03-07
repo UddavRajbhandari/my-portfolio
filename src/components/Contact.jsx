@@ -7,7 +7,6 @@ const LINKS = [
   { icon: '✉',  label: 'Email',    href: 'mailto:uddavraj123@gmail.com',                              text: 'uddavraj123@gmail.com'          },
   { icon: 'in', label: 'LinkedIn', href: 'https://linkedin.com/in/uddav-rajbhandari-4998252ab',       text: 'uddav-rajbhandari-4998252ab'    },
   { icon: '⌥',  label: 'GitHub',   href: 'https://github.com/UddavRajbhandari',                       text: 'github.com/UddavRajbhandari'    },
-  { icon: '📱', label: 'Phone',    href: 'tel:+9779840032944',                                        text: '+977-9840032944'                 },
 ]
 
 // ─── Contact form ─────────────────────────────────────────────────────────────

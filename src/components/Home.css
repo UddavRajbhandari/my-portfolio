@@ -13,7 +13,12 @@
 .orb--2 { width: 300px; height: 300px; background: rgba(0,170,255,.06); bottom: 5%; left: 5%; }
 
 /* ── Left ── */
-.home-left { flex: 1; min-width: 0; max-width: 540px; position: relative; z-index: 1; }
+.home-left {
+  flex: 0 1 55%;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
 
 .hero-tag {
   display: inline-flex; align-items: center; gap: .5rem;
@@ -27,15 +32,16 @@
 
 .hero-name {
   font-family: var(--ff-display);
-  font-size: clamp(2.2rem, 4.5vw, 5rem);
-  font-weight: 800; color: #fff; line-height: 1.05;
+  font-size: clamp(1.8rem, 3.5vw, 4rem);
+  font-weight: 800; color: #fff; line-height: 1.1;
   margin-bottom: .3rem;
   animation: fadeUp .8s .1s ease both;
+  white-space: nowrap;
 }
 
 .hero-role {
   font-family: var(--ff-display);
-  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-size: clamp(.9rem, 1.5vw, 1.4rem);
   font-weight: 600; color: var(--neon);
   margin-bottom: 1.5rem;
   animation: fadeUp .8s .2s ease both;
@@ -43,7 +49,7 @@
 
 .hero-desc {
   color: #9dc0db; font-size: .85rem; line-height: 1.9;
-  max-width: 440px; margin-bottom: 2rem;
+  max-width: 420px; margin-bottom: 2rem;
   animation: fadeUp .8s .3s ease both;
 }
 
@@ -59,7 +65,7 @@
   border: 1px solid var(--border);
   border-top: 2px solid var(--neon);
   padding: 1rem 1.2rem;
-  font-size: .72rem; max-width: 380px;
+  font-size: .72rem; max-width: 360px;
   animation: fadeUp .8s .5s ease both;
 }
 .terminal-line { color: #8aaccb; line-height: 2.1; }
@@ -68,15 +74,15 @@
 
 /* ── Right / photo ── */
 .home-right {
-  flex-shrink: 0;
+  flex: 0 0 auto;
   position: relative;
   z-index: 1;
   animation: fadeUp .8s .2s ease both;
 }
 
 .photo-frame {
-  width: clamp(220px, 28vw, 340px);
-  height: clamp(280px, 35vw, 430px);
+  width: clamp(180px, 22vw, 300px);
+  height: clamp(230px, 28vw, 380px);
   position: relative;
 }
 
@@ -126,6 +132,8 @@
 
 @media (max-width: 768px) {
   .home { flex-direction: column-reverse; padding-top: 100px; text-align: center; gap: 2rem; }
+  .home-left { flex: 1; }
+  .hero-name { font-size: clamp(2rem, 10vw, 3rem); white-space: normal; }
   .hero-btns { justify-content: center; }
   .photo-frame { width: 200px; height: 260px; }
   .terminal { max-width: 100%; }

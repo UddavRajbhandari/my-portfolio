@@ -9,8 +9,7 @@ const STATS = [
 ]
 
 const INTERESTS = [
-  { icon: '🧠', title: 'Natural Language Processing', desc: 'Hate speech detection, multilingual NLP, text classification, and sentiment analysis — especially for low-resource Nepali-language content.' },
-  { icon: '📊', title: 'ML Pipelines & Evaluation',   desc: 'End-to-end workflows from raw data to trained model — feature engineering, hyperparameter tuning, cross-validation, and performance analysis.' },
+  { icon: '🧠', title: 'Natural Language Processing', desc: 'Hate speech detection, multilingual NLP, text classification, sentiment analysis, and abstractive summarization — including fine-tuning BART for meeting minute generation and a focus on low-resource Nepali-language content.' },  { icon: '📊', title: 'ML Pipelines & Evaluation',   desc: 'End-to-end workflows from raw data to trained model — feature engineering, hyperparameter tuning, cross-validation, and performance analysis.' },
   { icon: '👁️', title: 'Computer Vision',              desc: 'Real-time posture detection and form correction using CNN+LSTM hybrid models built with TensorFlow and OpenCV.' },
   { icon: '🚀', title: 'Model Deployment',              desc: 'Shipping models to production via FastAPI and Streamlit, tracked with MLflow and WandB — from Jupyter prototype to live web app.' },
 ]
@@ -41,8 +40,7 @@ export default function About() {
             Bhaktapur</span>. I build end-to-end intelligent systems — from raw data to deployed web apps.
           </p>
           <p>
-            My work spans <span className="hl">Nepali hate speech detection</span>, audio-to-text pipelines using
-            Whisper ASR, real-time posture correction with computer vision, and corporate communication
+            My work spans <span className="hl">Nepali hate speech detection</span>, real-time posture correction with computer vision, and corporate communication
             assessment tools. I've delivered production-level AI systems during my internship using FastAPI,
             BART, and the Gemini API.
           </p>

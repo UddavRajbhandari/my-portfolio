@@ -87,7 +87,7 @@ export default function Contact() {
         <div className="contact-info">
           <p>
             I'm open to AI/ML roles, internships, freelance projects, and research collaborations —
-            especially in NLP and speech AI. Whether you have an opportunity or just want to talk
+            especially in NLP. Whether you have an opportunity or just want to talk
             about building AI for Nepali language, reach out anytime.
           </p>
           <div className="contact-links">

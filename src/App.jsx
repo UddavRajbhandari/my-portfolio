@@ -60,7 +60,7 @@ function Cursor() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <span>© 2025 Uddav Rajbhandari — Built with ♥ in Nepal</span>
+      <span>© 2026 Uddav Rajbhandari — Built with ♥ from Nepal</span>
       <span>Designed &amp; coded from scratch</span>
     </footer>
   )

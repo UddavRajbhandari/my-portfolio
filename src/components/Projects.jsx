@@ -7,11 +7,12 @@ const PROJECTS = [
     featured: true,
     liveDemo: true,
     title: 'Nepali Hate Content Classification',
-    desc: `Major Project. Developed a multilingual hate speech detection system for Nepali-language
-    social media content using NLP and deep learning. Trained and evaluated classification models
-    on curated Nepali datasets. Built a Streamlit-based inference app for real-time detection —
-    live and deployed.`,
-    tags: ['NLP', 'Deep Learning', 'Text Classification', 'Multilingual NLP', 'Streamlit', 'PyTorch'],
+    desc:`Major Project. Built a 4-class hate content detection system for Nepali-language social media —
+classifying text as Non-Offensive, Other-Offensive, Offensive-Racist, or Offensive-Sexist.
+Implemented ML baselines, a GRU model with Word2Vec embeddings, and fine-tuned transformer
+models (XLM-RoBERTa, NepaliBERT) supporting Devanagari, Romanized Nepali, and mixed-script inputs.
+Deployed as a real-time Streamlit inference app.`,
+    tags: ['NLP', 'Deep Learning', 'Text Classification', 'Multilingual NLP', 'Streamlit', 'Transformers'],
     demoUrl:   'https://nepali-hate-content-detection.streamlit.app/',
     githubUrl: 'https://github.com/UddavRajbhandari/major-project',
   },
@@ -21,7 +22,7 @@ const PROJECTS = [
     liveDemo: false,
     title: 'Meeting Minute Generation System',
     desc: `Audio-to-structured notes pipeline built during AI internship. Converts raw meeting audio
-    to structured minutes using Whisper ASR, speaker diarization, Gemini API segmentation, and
+    to structured minutes using Whisper ASR, Gemini API segmentation, and
     BART summarization. Modular pipeline: ASR → NLP → summarization → PDF generation.`,
     tags: ['Whisper ASR', 'BART', 'Gemini API', 'NLP', 'Summarization', 'FastAPI', 'Python'],
     githubUrl: 'https://github.com/UddavRajbhandari/Techmanthan-meeting-minutes-generation',
@@ -96,7 +97,7 @@ export default function Projects() {
     <section id="work" className="section section--dark">
       <div className="section-label">// 02. work</div>
       <h2 className="section-title">My <span className="accent">Projects</span></h2>
-      <p className="projects-sub">End-to-end AI/ML projects spanning NLP, ASR, computer vision, and hate speech detection — one with a live demo.</p>
+      <p className="projects-sub">End-to-end AI/ML projects spanning NLP, computer vision, and hate speech detection — one with a live demo.</p>
 
       <div className="projects-grid fade-in" ref={ref}>
         {PROJECTS.map(p => <ProjectCard key={p.id} project={p} />)}

@@ -1,80 +1,90 @@
 import { useEffect, useRef } from 'react'
 import './Skills.css'
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-// Add / remove tools from any category freely
+// Each category has an accent color and a size hint per tool
+// size: 'lg' = wider pill, default = normal
 const CATEGORIES = [
   {
     label: 'Languages',
+    accent: '#00f5c4',
+    icon: '{ }',
     tools: [
-      { icon: '🐍', name: 'Python'  },
-      { icon: '⚙️', name: 'C/C++'  },
+      { icon: '🐍', name: 'Python',  size: 'lg' },
+      { icon: '⚙️', name: 'C/C++' },
     ],
   },
   {
     label: 'ML / AI',
+    accent: '#00aaff',
+    icon: '◈',
     tools: [
-      { icon: '📊', name: 'Classification'          },
-      { icon: '📈', name: 'Regression'              },
-      { icon: '🔧', name: 'Feature Engineering'     },
-      { icon: '🎯', name: 'Model Evaluation'        },
-      { icon: '⚗️', name: 'Hyperparameter Tuning'  },
-      { icon: '🔍', name: 'EDA'                     },
+      { icon: '📊', name: 'Classification',       size: 'lg' },
+      { icon: '📈', name: 'Regression' },
+      { icon: '🔧', name: 'Feature Engineering',  size: 'lg' },
+      { icon: '🎯', name: 'Model Evaluation',     size: 'lg' },
+      { icon: '⚗️', name: 'Hyperparameter Tuning', size: 'lg' },
+      { icon: '🔍', name: 'EDA' },
     ],
   },
   {
     label: 'Deep Learning & NLP',
+    accent: '#7b61ff',
+    icon: '✦',
     tools: [
-      { icon: '🧠', name: 'Neural Networks'      },
-      { icon: '👁️', name: 'CNNs'                 },
-      { icon: '🔁', name: 'LSTM / BiLSTM'        },
-      { icon: '📝', name: 'BART'                  },
-      { icon: '🎙️', name: 'Whisper ASR'           },
-      { icon: '🔤', name: 'Text Classification'   },
-      { icon: '🚫', name: 'Hate Speech Detection' },
-      { icon: '🌍', name: 'Multilingual NLP'      },
-      { icon: '📋', name: 'Summarization'         },
-      { icon: '💬', name: 'Sentiment Analysis'    },
+      { icon: '🧠', name: 'Neural Networks',       size: 'lg' },
+      { icon: '👁️', name: 'CNNs' },
+      { icon: '🔁', name: 'LSTM / BiLSTM',         size: 'lg' },
+      { icon: '📝', name: 'BART' },
+      { icon: '🔤', name: 'Text Classification',   size: 'lg' },
+      { icon: '🌍', name: 'Multilingual NLP',      size: 'lg' },
+      { icon: '📋', name: 'Summarization' },
+      { icon: '💬', name: 'Sentiment Analysis',    size: 'lg' },
     ],
   },
   {
     label: 'Libraries & Frameworks',
+    accent: '#f59e0b',
+    icon: '▸',
     tools: [
-      { icon: '🔥', name: 'PyTorch'      },
-      { icon: '🧩', name: 'TensorFlow'   },
-      { icon: '⚗️', name: 'Scikit-learn' },
-      { icon: '🐼', name: 'Pandas'       },
-      { icon: '🔢', name: 'NumPy'        },
-      { icon: '📊', name: 'Matplotlib'   },
-      { icon: '🌊', name: 'Seaborn'      },
-      { icon: '👁️', name: 'OpenCV'       },
+      { icon: '🔥', name: 'PyTorch',      size: 'lg' },
+      { icon: '🧩', name: 'TensorFlow',   size: 'lg' },
+      { icon: '⚗️', name: 'Scikit-learn', size: 'lg' },
+      { icon: '🐼', name: 'Pandas' },
+      { icon: '🔢', name: 'NumPy' },
+      { icon: '📊', name: 'Matplotlib' },
+      { icon: '🌊', name: 'Seaborn' },
+      { icon: '👁️', name: 'OpenCV' },
     ],
   },
   {
     label: 'Tools & Platforms',
+    accent: '#10b981',
+    icon: '⌥',
     tools: [
-      { icon: '⚡', name: 'FastAPI'    },
-      { icon: '📊', name: 'Streamlit'  },
-      { icon: '🐙', name: 'Git/GitHub' },
-      { icon: '📉', name: 'MLflow'     },
-      { icon: '🔭', name: 'WandB'      },
+      { icon: '⚡', name: 'FastAPI',    size: 'lg' },
+      { icon: '📊', name: 'Streamlit',  size: 'lg' },
+      { icon: '🐙', name: 'Git/GitHub', size: 'lg' },
+      { icon: '📉', name: 'MLflow' },
+      { icon: '🔭', name: 'WandB' },
     ],
   },
 ]
 
 const BARS = [
-  { name: 'Python',                pct: 92 },
+  { name: 'Python',                 pct: 92 },
   { name: 'NLP / Text Classification', pct: 88 },
-  { name: 'PyTorch / TensorFlow',  pct: 85 },
-  { name: 'Deep Learning',         pct: 83 },
-  { name: 'FastAPI / Streamlit',   pct: 78 },
-  { name: 'Computer Vision',       pct: 75 },
+  { name: 'PyTorch / TensorFlow',   pct: 85 },
+  { name: 'Deep Learning',          pct: 83 },
+  { name: 'FastAPI / Streamlit',    pct: 78 },
+  { name: 'Computer Vision',        pct: 75 },
 ]
 
-// ─── Sub-components ───────────────────────────────────────────────────────────
-function ToolPill({ icon, name }) {
+function ToolPill({ icon, name, size, accent }) {
   return (
-    <div className="skill-pill card-hover">
+    <div
+      className={`skill-pill ${size === 'lg' ? 'skill-pill--lg' : ''}`}
+      style={{ '--accent': accent }}
+    >
       <span className="skill-pill__icon">{icon}</span>
       <span className="skill-pill__name">{name}</span>
     </div>
@@ -110,7 +120,22 @@ function SkillBar({ name, pct, delay }) {
   )
 }
 
-// ─── Section ──────────────────────────────────────────────────────────────────
+function SkillCategory({ cat }) {
+  return (
+    <div className="skill-bento" style={{ '--cat-accent': cat.accent }}>
+      <div className="skill-bento__header">
+        <span className="skill-bento__icon">{cat.icon}</span>
+        <span className="skill-bento__label">{cat.label}</span>
+      </div>
+      <div className="skill-bento__pills">
+        {cat.tools.map(t => (
+          <ToolPill key={t.name} {...t} accent={cat.accent} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Skills() {
   const ref = useRef(null)
   useEffect(() => {
@@ -128,21 +153,22 @@ export default function Skills() {
       <h2 className="section-title">My <span className="accent">Toolkit</span></h2>
 
       <div className="fade-in" ref={ref}>
-        {CATEGORIES.map(cat => (
-          <div key={cat.label} className="skill-category">
-            <div className="skill-cat-label">{cat.label}</div>
-            <div className="skills-grid">
-              {cat.tools.map(t => <ToolPill key={t.name} {...t} />)}
-            </div>
-          </div>
-        ))}
 
-        <div className="skill-category">
-          <div className="skill-cat-label">Core Proficiency</div>
+        {/* ── Bento grid ── */}
+        <div className="skills-bento-grid">
+          {CATEGORIES.map(cat => (
+            <SkillCategory key={cat.label} cat={cat} />
+          ))}
+        </div>
+
+        {/* ── Core proficiency bars ── */}
+        <div className="skill-proficiency">
+          <div className="skill-prof-label">Core Proficiency</div>
           <div className="skill-bars-grid">
             {BARS.map((b, i) => <SkillBar key={b.name} {...b} delay={i * 0.1} />)}
           </div>
         </div>
+
       </div>
     </section>
   )

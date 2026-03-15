@@ -78,7 +78,7 @@ export default function Contact() {
   }, [])
 
   return (
-    <section id="contact" className="section section--alt">
+    <section id="contact" className="section section--dark">
       <div className="section-label">// 05. contact</div>
       <h2 className="section-title">Get In <span className="accent">Touch</span></h2>
 

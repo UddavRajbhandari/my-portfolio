@@ -57,7 +57,7 @@ export default function Education() {
   }, [])
 
   return (
-    <section id="education" className="section section--dark">
+    <section id="education" className="section section--alt">
       <div className="section-label">// 05. education</div>
       <h2 className="section-title">My <span className="accent">Background</span></h2>
 

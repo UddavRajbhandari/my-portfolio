@@ -58,7 +58,7 @@ export default function Education() {
 
   return (
     <section id="education" className="section section--dark">
-      <div className="section-label">// 04. education</div>
+      <div className="section-label">// 05. education</div>
       <h2 className="section-title">My <span className="accent">Background</span></h2>
 
       <div className="edu-timeline fade-in" ref={ref}>

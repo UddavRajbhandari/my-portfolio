@@ -30,7 +30,7 @@ export default function Home() {
         <div className="terminal">
           <div className="terminal-line"><span className="t-cmd">const</span> engineer = {'{'}</div>
           <div className="terminal-line">&nbsp;&nbsp;name: <span className="t-val">"Uddav Rajbhandari"</span>,</div>
-          <div className="terminal-line">&nbsp;&nbsp;focus: <span className="t-val">"NLP & Hate Speech Detection"</span>,</div>
+          {/* <div className="terminal-line">&nbsp;&nbsp;focus: <span className="t-val">"NLP & Hate Speech Detection"</span>,</div> */}
           <div className="terminal-line">&nbsp;&nbsp;location: <span className="t-val">"Lalitpur, Nepal"</span>,</div>
           <div className="terminal-line">&nbsp;&nbsp;status: <span className="t-val">"open_to_work"</span></div>
           <div className="terminal-line">{'}'}<span className="cursor-blink" /></div>

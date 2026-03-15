@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import About from './components/About'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
+import Experience from './components/Experience'
 import Education from './components/Education'
 import Contact from './components/Contact'
 
@@ -58,10 +59,40 @@ function Cursor() {
 
 // ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
+  const [time, setTime] = useState('')
+  const scrollTo = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+
+  // Live Kathmandu time
+  useEffect(() => {
+    const update = () => {
+      const t = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'Asia/Kathmandu',
+        hour: '2-digit', minute: '2-digit', second: '2-digit',
+        hour12: false,
+      })
+      setTime(t)
+    }
+    update()
+    const id = setInterval(update, 1000)
+    return () => clearInterval(id)
+  }, [])
+
   return (
     <footer className="site-footer">
-      <span>© 2026 Uddav Rajbhandari — Built with ♥ from Nepal</span>
-      <span>Designed &amp; coded from scratch</span>
+      <div className="footer-left">
+        <button className="footer-logo" onClick={() => scrollTo('home')}>
+          Uddav<span>.dev</span>
+        </button>
+        <p className="footer-tagline">AI Engineer · Lalitpur, Nepal</p>
+      </div>
+
+      <div className="footer-right">
+        <div className="footer-time">
+          <span className="footer-time-label">NPT</span>
+          <span className="footer-time-value">{time}</span>
+        </div>
+        <p className="footer-copy">© {new Date().getFullYear()} Uddav Rajbhandari</p>
+      </div>
     </footer>
   )
 }
@@ -77,6 +108,7 @@ export default function App() {
         <About />
         <Projects />
         <Skills />
+        <Experience />
         <Education />
         <Contact />
       </main>

@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { fadeUpVariants, fadeUpItem, staggerContainer, scaleIn, viewport, viewportMid } from '../animations'
 import './Projects.css'
 
 const PROJECTS = [
@@ -36,7 +37,7 @@ Deployed as a real-time Streamlit inference app.`,
     using NLP heuristics, pattern matching, and rule-based scoring. FastAPI endpoints for MCQ
     generation, free-text scenario evaluation, and weighted combined-score computation.`,
     tags: ['NLP', 'FastAPI', 'Sentiment Analysis', 'Rule-based AI', 'Python', 'Scoring'],
-    githubUrl: null, // no public repo
+    githubUrl: null,
   },
   {
     id: '04',
@@ -51,19 +52,19 @@ Deployed as a real-time Streamlit inference app.`,
   },
 ]
 
-// ─── Single project card ──────────────────────────────────────────────────────
-function ProjectCard({ project }) {
+function ProjectCard({ project, index }) {
   return (
-    <div className={`project-card card-hover ${project.featured ? 'project-card--featured' : ''}`}>
+    <motion.div
+      className={`project-card card-hover ${project.featured ? 'project-card--featured' : ''}`}
+      variants={fadeUpItem}
+      whileHover={{ y: -6, transition: { duration: 0.2 } }}
+    >
       <div className="project-number">PROJECT — {project.id}</div>
-
       <h3 className="project-title">{project.title}</h3>
       <p className="project-desc">{project.desc}</p>
-
       <div className="project-tags">
         {project.tags.map(t => <span key={t} className="tag">{t}</span>)}
       </div>
-
       <div className="project-links">
         {project.liveDemo && (
           <a href={project.demoUrl} target="_blank" rel="noreferrer" className="project-link project-link--demo">
@@ -76,32 +77,33 @@ function ProjectCard({ project }) {
           </a>
         )}
       </div>
-    </div>
+    </motion.div>
   )
 }
 
-// ─── Section ──────────────────────────────────────────────────────────────────
 export default function Projects() {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) ref.current?.classList.add('visible') },
-      { threshold: 0.05 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section id="work" className="section section--dark">
-      <div className="section-label">// 02. work</div>
-      <h2 className="section-title">My <span className="accent">Projects</span></h2>
-      <p className="projects-sub">End-to-end AI/ML projects spanning NLP, computer vision, and hate speech detection — one with a live demo.</p>
+      <motion.div
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+      >
+        <div className="section-label">// 02. work</div>
+        <h2 className="section-title">My <span className="accent">Projects</span></h2>
+        <p className="projects-sub">End-to-end AI/ML projects spanning NLP, computer vision, and hate speech detection — one with a live demo.</p>
+      </motion.div>
 
-      <div className="projects-grid fade-in" ref={ref}>
-        {PROJECTS.map(p => <ProjectCard key={p.id} project={p} />)}
-      </div>
+      <motion.div
+        className="projects-grid"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportMid}
+      >
+        {PROJECTS.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)}
+      </motion.div>
     </section>
   )
 }

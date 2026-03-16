@@ -1,8 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { fadeUpVariants, fadeUpItem, staggerContainer, viewport, viewportMid } from '../animations'
 import './Education.css'
 
-// ─── Data ─────────────────────────────────────────────────────────────────────
-// Add / remove education items here. They render as a vertical timeline.
 const EDUCATION = [
   {
     date:    '2022 — 2026 (Expected)',
@@ -31,39 +30,54 @@ const EDUCATION = [
   },
 ]
 
-function EduItem({ item }) {
+function EduItem({ item, index }) {
   return (
-    <div className="edu-item">
+    <motion.div
+      className="edu-item"
+      variants={fadeUpItem}
+      custom={index}
+    >
       <div className="edu-date">{item.date}</div>
       <div className="edu-degree">{item.degree}</div>
       <div className="edu-school">{item.school}</div>
       <p className="edu-desc">{item.desc}</p>
-      <div className="edu-courses">
-        {item.courses.map(c => <span key={c} className="tag tag--blue">{c}</span>)}
-      </div>
-    </div>
+      <motion.div
+        className="edu-courses"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+      >
+        {item.courses.map(c => (
+          <motion.span key={c} className="tag tag--blue" variants={fadeUpItem}>{c}</motion.span>
+        ))}
+      </motion.div>
+    </motion.div>
   )
 }
 
 export default function Education() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) ref.current?.classList.add('visible') },
-      { threshold: 0.05 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section id="education" className="section section--alt">
-      <div className="section-label">// 05. education</div>
-      <h2 className="section-title">My <span className="accent">Background</span></h2>
+      <motion.div
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+      >
+        <div className="section-label">// 05. education</div>
+        <h2 className="section-title">My <span className="accent">Background</span></h2>
+      </motion.div>
 
-      <div className="edu-timeline fade-in" ref={ref}>
-        {EDUCATION.map(e => <EduItem key={e.degree} item={e} />)}
-      </div>
+      <motion.div
+        className="edu-timeline"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewportMid}
+      >
+        {EDUCATION.map((e, i) => <EduItem key={e.degree} item={e} index={i} />)}
+      </motion.div>
     </section>
   )
 }

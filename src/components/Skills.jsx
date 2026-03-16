@@ -1,22 +1,18 @@
-import { useEffect, useRef } from 'react'
+import { useRef, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { fadeUpVariants, fadeUpItem, staggerContainer, viewport } from '../animations'
 import './Skills.css'
 
-// Each category has an accent color and a size hint per tool
-// size: 'lg' = wider pill, default = normal
 const CATEGORIES = [
   {
-    label: 'Languages',
-    accent: '#00f5c4',
-    icon: '{ }',
+    label: 'Languages', accent: '#00f5c4', icon: '{ }',
     tools: [
       { icon: '🐍', name: 'Python',  size: 'lg' },
       { icon: '⚙️', name: 'C/C++' },
     ],
   },
   {
-    label: 'ML / AI',
-    accent: '#00aaff',
-    icon: '◈',
+    label: 'ML / AI', accent: '#00aaff', icon: '◈',
     tools: [
       { icon: '📊', name: 'Classification',       size: 'lg' },
       { icon: '📈', name: 'Regression' },
@@ -27,24 +23,21 @@ const CATEGORIES = [
     ],
   },
   {
-    label: 'Deep Learning & NLP',
-    accent: '#7b61ff',
-    icon: '✦',
+    label: 'Deep Learning & NLP', accent: '#7b61ff', icon: '✦',
     tools: [
       { icon: '🧠', name: 'Neural Networks',       size: 'lg' },
       { icon: '👁️', name: 'CNNs' },
       { icon: '🔁', name: 'LSTM / BiLSTM',         size: 'lg' },
       { icon: '📝', name: 'BART' },
       { icon: '🔤', name: 'Text Classification',   size: 'lg' },
+      { icon: '🚫', name: 'Hate Speech Detection', size: 'lg' },
       { icon: '🌍', name: 'Multilingual NLP',      size: 'lg' },
       { icon: '📋', name: 'Summarization' },
       { icon: '💬', name: 'Sentiment Analysis',    size: 'lg' },
     ],
   },
   {
-    label: 'Libraries & Frameworks',
-    accent: '#f59e0b',
-    icon: '▸',
+    label: 'Libraries & Frameworks', accent: '#f59e0b', icon: '▸',
     tools: [
       { icon: '🔥', name: 'PyTorch',      size: 'lg' },
       { icon: '🧩', name: 'TensorFlow',   size: 'lg' },
@@ -57,9 +50,7 @@ const CATEGORIES = [
     ],
   },
   {
-    label: 'Tools & Platforms',
-    accent: '#10b981',
-    icon: '⌥',
+    label: 'Tools & Platforms', accent: '#10b981', icon: '⌥',
     tools: [
       { icon: '⚡', name: 'FastAPI',    size: 'lg' },
       { icon: '📊', name: 'Streamlit',  size: 'lg' },
@@ -104,7 +95,7 @@ function SkillBar({ name, pct, delay }) {
   }, [])
 
   return (
-    <div className="skill-bar">
+    <motion.div className="skill-bar" variants={fadeUpItem}>
       <div className="skill-bar__top">
         <span className="skill-bar__name">{name}</span>
         <span className="skill-bar__pct">{pct}%</span>
@@ -116,7 +107,7 @@ function SkillBar({ name, pct, delay }) {
           style={{ '--w': `${pct}%`, animationDelay: `${delay}s`, animationPlayState: 'paused' }}
         />
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -137,39 +128,38 @@ function SkillCategory({ cat }) {
 }
 
 export default function Skills() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) ref.current?.classList.add('visible') },
-      { threshold: 0.05 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section id="skills" className="section section--alt">
-      <div className="section-label">// 03. skills</div>
-      <h2 className="section-title">My <span className="accent">Toolkit</span></h2>
+      <motion.div
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={viewport}
+      >
+        <div className="section-label">// 03. skills</div>
+        <h2 className="section-title">My <span className="accent">Toolkit</span></h2>
+      </motion.div>
 
-      <div className="fade-in" ref={ref}>
-
-        {/* ── Bento grid ── */}
-        <div className="skills-bento-grid">
-          {CATEGORIES.map(cat => (
-            <SkillCategory key={cat.label} cat={cat} />
-          ))}
-        </div>
-
-        {/* ── Core proficiency bars ── */}
-        <div className="skill-proficiency">
-          <div className="skill-prof-label">Core Proficiency</div>
-          <div className="skill-bars-grid">
-            {BARS.map((b, i) => <SkillBar key={b.name} {...b} delay={i * 0.1} />)}
-          </div>
-        </div>
-
+      {/* ── Bento grid — always visible, no animation ── */}
+      <div className="skills-bento-grid">
+        {CATEGORIES.map((cat, i) => (
+          <SkillCategory key={cat.label} cat={cat} index={i} />
+        ))}
       </div>
+
+      {/* ── Proficiency bars — animate on scroll ── */}
+      <motion.div
+        className="skill-proficiency"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0, margin: '0px 0px -50px 0px' }}
+      >
+        <div className="skill-prof-label">Core Proficiency</div>
+        <div className="skill-bars-grid">
+          {BARS.map((b, i) => <SkillBar key={b.name} {...b} delay={i * 0.1} />)}
+        </div>
+      </motion.div>
     </section>
   )
 }

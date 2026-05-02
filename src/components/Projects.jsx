@@ -14,7 +14,7 @@ Implemented ML baselines, a GRU model with Word2Vec embeddings, and fine-tuned t
 models (XLM-RoBERTa, NepaliBERT) supporting Devanagari, Romanized Nepali, and mixed-script inputs.
 Deployed as a real-time Streamlit inference app.`,
     tags: ['NLP', 'Deep Learning', 'Text Classification', 'Multilingual NLP', 'Streamlit', 'Transformers'],
-    demoUrl:   'https://nepali-hate-content-detection.streamlit.app/',
+    demoUrl:   'https://nepali-hate-content-detector-app.vercel.app/',
     githubUrl: 'https://github.com/UddavRajbhandari/major-project',
   },
   {

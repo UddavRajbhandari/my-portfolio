@@ -11,3 +11,4 @@ dist/
 # Editor clutter
 .DS_Store
 .vscode/
+AGENTS.md

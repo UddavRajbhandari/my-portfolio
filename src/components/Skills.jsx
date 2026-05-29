@@ -9,6 +9,7 @@ const CATEGORIES = [
     tools: [
       { icon: '🐍', name: 'Python',  size: 'lg' },
       { icon: '⚙️', name: 'C/C++' },
+      { icon: '📘', name: 'TypeScript' },
     ],
   },
   {
@@ -47,6 +48,10 @@ const CATEGORIES = [
       { icon: '📊', name: 'Matplotlib' },
       { icon: '🌊', name: 'Seaborn' },
       { icon: '👁️', name: 'OpenCV' },
+      { icon: '🔀', name: 'LangGraph', size: 'lg' },
+      { icon: '🗄️', name: 'Qdrant', size: 'lg' },
+      { icon: '🔌', name: 'ONNX' },
+      { icon: '🧬', name: 'Sentence Transformers', size: 'lg' },
     ],
   },
   {
@@ -57,17 +62,21 @@ const CATEGORIES = [
       { icon: '🐙', name: 'Git/GitHub', size: 'lg' },
       { icon: '📉', name: 'MLflow' },
       { icon: '🔭', name: 'WandB' },
+      { icon: '🌐', name: 'Next.js', size: 'lg' },
+      { icon: '🐳', name: 'Docker', size: 'lg' },
+      { icon: '📊', name: 'Prometheus' },
+      { icon: '🔁', name: 'CI/CD', size: 'lg' },
     ],
   },
 ]
 
 const BARS = [
-  { name: 'Python',                 pct: 92 },
+  { name: 'Python',                   pct: 92 },
   { name: 'NLP / Text Classification', pct: 88 },
-  { name: 'PyTorch / TensorFlow',   pct: 85 },
-  { name: 'Deep Learning',          pct: 83 },
-  { name: 'FastAPI / Streamlit',    pct: 78 },
-  { name: 'Computer Vision',        pct: 75 },
+  { name: 'RAG / LLM Pipelines',      pct: 85 },
+  { name: 'Deep Learning',            pct: 83 },
+  { name: 'Full-Stack ML Deployment', pct: 80 },
+  { name: 'Computer Vision',          pct: 75 },
 ]
 
 function ToolPill({ icon, name, size, accent }) {

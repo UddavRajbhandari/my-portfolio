@@ -7,6 +7,16 @@ const PROJECTS = [
     id: '01',
     featured: true,
     liveDemo: true,
+    title: 'Production RAG Pipeline',
+    desc: `Production-grade multi-agent RAG pipeline powered by an 8-node LangGraph StateGraph with conditional routing and cascading LLM failover (OpenRouter → OpenAI → Groq → Ollama). Implements structure-aware chunking with hybrid retrieval (Qdrant dense + BM25 sparse + RRF fusion) and ONNX-optimized reranking. Production guardrails include PII redaction, semantic similarity caching (≥0.92), token budgeting, and prompt injection hardening. Features a streaming SSE frontend with real-time agent evaluation chain display and RAGAS metrics — Docker-deployed on Hugging Face Spaces.`,
+    tags: ['LangGraph', 'FastAPI', 'Qdrant', 'ONNX', 'Next.js 14', 'Docker', 'Prometheus', 'RAG'],
+    demoUrl: 'https://production-rag-ten.vercel.app/',
+    githubUrl: null,
+  },
+  {
+    id: '02',
+    featured: true,
+    liveDemo: true,
     title: 'Nepali Hate Content Classification',
     desc:`Major Project. Built a 4-class hate content detection system for Nepali-language social media —
 classifying text as Non-Offensive, Other-Offensive, Offensive-Racist, or Offensive-Sexist.
@@ -18,7 +28,7 @@ Deployed as a real-time Streamlit inference app.`,
     githubUrl: 'https://github.com/UddavRajbhandari/major-project',
   },
   {
-    id: '02',
+    id: '03',
     featured: false,
     liveDemo: false,
     title: 'Meeting Minute Generation System',
@@ -29,7 +39,7 @@ Deployed as a real-time Streamlit inference app.`,
     githubUrl: 'https://github.com/UddavRajbhandari/Techmanthan-meeting-minutes-generation',
   },
   {
-    id: '03',
+    id: '04',
     featured: false,
     liveDemo: false,
     title: 'AI-Powered Soft Skill Trainer',
@@ -40,7 +50,7 @@ Deployed as a real-time Streamlit inference app.`,
     githubUrl: null,
   },
   {
-    id: '04',
+    id: '05',
     featured: false,
     liveDemo: false,
     title: 'Upper Body Posture Correction',
@@ -92,7 +102,7 @@ export default function Projects() {
       >
         <div className="section-label">// 02. work</div>
         <h2 className="section-title">My <span className="accent">Projects</span></h2>
-        <p className="projects-sub">End-to-end AI/ML projects spanning NLP, computer vision, and hate speech detection — one with a live demo.</p>
+        <p className="projects-sub">End-to-end AI/ML projects spanning NLP, computer vision, and hate speech detection — two with live demos.</p>
       </motion.div>
 
       <motion.div

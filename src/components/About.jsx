@@ -3,10 +3,10 @@ import { fadeUpVariants, fadeUpItem, staggerContainer, slideInLeft, slideInRight
 import './About.css'
 
 const STATS = [
-  { num: '4+', label: 'AI/ML Projects'    },
+  { num: '5+', label: 'AI/ML Projects'    },
   { num: '1',  label: 'Internship Roles'  },
-  { num: '10+', label: 'Tools & Libraries'},
-  { num: '1',  label: 'Live Deployed App' },
+  { num: '20+', label: 'Tools & Libraries'},
+  { num: '2',  label: 'Live Deployed Apps' },
 ]
 
 const INTERESTS = [
@@ -44,7 +44,7 @@ export default function About() {
             Bhaktapur</span>. I build end-to-end intelligent systems — from raw data to deployed web apps.
           </p>
           <p>
-            My work spans <span className="hl">Nepali hate speech detection</span>, real-time posture correction with computer vision, and corporate communication
+            My work spans <span className="hl">Nepali hate speech detection</span>, a production-grade <span className="hl">multi-agent RAG pipeline</span> with LangGraph and hybrid retrieval, real-time posture correction with computer vision, and corporate communication
             assessment tools. I've delivered production-level AI systems during my internship using FastAPI,
             BART, and the Gemini API.
           </p>
